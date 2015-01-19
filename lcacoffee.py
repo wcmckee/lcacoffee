@@ -6,44 +6,63 @@
 # script that displays coffees sold by hour at lca2015.
 # Currently it opens a .json file and converts it into a python dict. 
 
-# In[7]:
+# In[29]:
 
 import json
 import os
 import pandas
+import getpass
 
 
-# In[8]:
+# In[30]:
 
-opcvs = open('/home/wcmckee/Downloads/convertcsv.json', 'r')
+theuser = getpass.getuser()
 
 
-# In[9]:
+# In[35]:
+
+jsonfold = ('/home/' + theuser + '/github/lcacoffee/')
+alldata = ('salebyhour.json')
+tueda = ('saletues.json')
+weda = ('saleweds.json')
+thura = ('salethurs.json')
+fria = ('salefri.json')
+
+salhr = (jsonfold + alldata)
+salhr
+
+
+# In[36]:
+
+opcvs = open(salhr, 'r')
+
+
+# In[37]:
 
 opzrd = opcvs.read()
 
 
-# In[10]:
+# In[38]:
 
 jdunp = json.loads(opzrd)
 
 
-# In[11]:
+# In[39]:
 
 valia = []
 
 
-# In[12]:
+# In[40]:
 
 #pandas.read_json(jdunp)
 
 
-# In[13]:
+# In[41]:
 
 jdunp.count(int)
 
 
-# In[14]:
+# In[42]:
 
 len(jdunp)
 
@@ -52,47 +71,47 @@ len(jdunp)
 # 
 # cycle through ints but as a string. must add ' '
 
-# In[15]:
+# In[43]:
 
 for numtwn in range(0,24):
     print "'" + str(numtwn) + "'"
 
 
-# In[16]:
+# In[44]:
 
 for jdr in jdunp:
     print jdr['0']
 
 
-# In[17]:
+# In[45]:
 
 for numtwn in range(0,24):
         print "'" + str(numtwn) + "'"
 
 
-# In[18]:
+# In[46]:
 
 for dej in jdunp:
     print dej.values()
     valia.append(dej.values())
 
 
-# In[18]:
+# In[46]:
 
 
 
 
-# In[19]:
+# In[47]:
 
 dezrand = len(valia)
 
 
-# In[20]:
+# In[48]:
 
 azlis = []
 
 
-# In[21]:
+# In[49]:
 
 for vals in valia:    
     print vals
@@ -107,30 +126,30 @@ for vals in valia:
 # 
 # New dict that shows only the times that coffee were sold and the amount of coffgfges that were solf. Maybe that would works. 
 
-# In[22]:
+# In[16]:
 
 betra = []
 
 
-# In[23]:
+# In[17]:
 
 for azl in azlis:
     betra.append(azl)
 
 
-# In[24]:
+# In[18]:
 
 anoe = []
 anez = []
 
 
-# In[25]:
+# In[19]:
 
 for betr in betra:
     betr.append(anoe)
 
 
-# In[26]:
+# In[20]:
 
 for deta in betr:
     #print deta
@@ -140,17 +159,17 @@ for deta in betr:
         anez.append(deta)
 
 
-# In[27]:
+# In[21]:
 
 fdic = []
 
 
-# In[27]:
+# In[21]:
 
 
 
 
-# In[28]:
+# In[22]:
 
 for resut in anez:
     print resut
@@ -161,35 +180,45 @@ for resut in anez:
 # 
 # Needs to take the number in brackets away from the number not in brackets.
 
-# In[29]:
+# In[23]:
 
 fdic
 
 
-# In[30]:
+# In[24]:
 
 optue = open('/home/wcmckee/Downloads/saletues.json', 'r')
 
 
-# In[31]:
+# In[25]:
 
 rdtue = optue.read()
 
 
-# In[32]:
+# In[26]:
 
 tuejs = json.loads(rdtue)
 
 
-# In[39]:
+# In[27]:
 
 tuejs
 
 
-# In[41]:
+# In[28]:
 
 for bran in tuejs:
     print bran
+
+
+# In[28]:
+
+
+
+
+# In[28]:
+
+
 
 
 # In[ ]:
