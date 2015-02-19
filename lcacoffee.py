@@ -187,7 +187,7 @@ fdic
 
 # In[24]:
 
-optue = open('/home/wcmckee/Downloads/saletues.json', 'r')
+optue = open('saletues.json', 'r')
 
 
 # In[25]:
