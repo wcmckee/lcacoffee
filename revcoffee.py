@@ -5,87 +5,170 @@
 # It uses the same base template as lcacoffee.ipnb.
 # 
 # Create a dict with coffee data in 
+# 
+# Sell a product = +1 to sales
+# 
+# Cash register base.
+# 
+# 10 cents, 20cents, 50cents, 1dollar, 2dollar,
+# 5 dollar, 10 dollar, 20 dollar, 50 dollar, 100 dollar.
+# 
+# Point of sale open source project.
 
-# In[23]:
+# In[222]:
+
+
+
+
+# In[223]:
 
 import arrow
 import os
 
 
-# In[24]:
+# In[224]:
 
 #I need it to return the day of the week it is.
 #etc. Monday, Tuesday, Wednesday, Thursday
 
 
-# In[6]:
+# In[225]:
 
 arut = arrow.utcnow()
 
 
-# In[31]:
+# In[226]:
 
 cofdat = dict()
 
 
-# In[32]:
+# In[227]:
+
+#cofdat
+
+
+# In[229]:
+
+#Add a product.
+newprod = raw_input('Enter new product: ')
+
+strprod = str(newprod)
+#dicprod = dict()
+
+
+# In[230]:
+
+#dict({"test": "again"})
+
+
+# In[231]:
 
 print arut.date()
 
 
-# In[33]:
+# In[232]:
 
 print arut.time()
 
 
-# In[34]:
+# In[233]:
 
 arut.weekday()
 
 
-# In[35]:
+# In[234]:
 
 cofdat.update({'Day': arut.weekday()})
 
 
-# In[39]:
+# In[235]:
 
 cofdat.update({'Date': str(arut.date())})
 
 
-# In[40]:
+# In[236]:
 
 print cofdat
 
 
-# In[45]:
+# In[237]:
 
-for dayhr in range(24):
+#for dayhr in range(24):
     #print dayhr
-    cofdat.update({dayhr: ' '})
+#    cofdat.update({dayhr: ' '})
 
 
-# In[53]:
+# In[238]:
 
 twenforst = arut.strftime('%H')
 
 
-# In[54]:
+# In[239]:
 
 twenforst
 
 
-# In[46]:
+# In[240]:
+
+lisprod = ('/home/wcmckee/sellcoffee/products/')
+
+
+# In[241]:
+
+os.listdir(lisprod)
+
+
+# In[242]:
+
+opnumco = open('/home/wcmckee/sellcoffee/products/internet', 'r')
+
+oprz = opnumco.read()
+
+
+# In[243]:
+
+#Need to +1 to this number 
+salnumz = int(oprz) + 1
+
+
+# In[244]:
+
+salnumz
+
+
+# In[245]:
+
+savopnum = open('/home/wcmckee/sellcoffee/products/internet', 'w')
+
+savopnum.write(str(salnumz))
+
+
+# In[246]:
+
+savopnum.close()
+
+
+# In[247]:
+
+cofdat.update({twenforst: salnumz})
+
+
+# In[248]:
+
+#cofdat.update({twenforst : numup
+
+
+# In[249]:
 
 cofdat
 
 
-# In[55]:
+# In[250]:
 
 cofdat.update({twenforst: 1})
 
 
-# In[58]:
+# In[251]:
 
 #Whats the point in creating keys for hours that don't
 #get sales. Just get it to update with hour and add it
@@ -94,37 +177,37 @@ cofdat.update({twenforst: 1})
 #Currently just numbers.
 
 
-# In[56]:
+# In[252]:
 
-cofdat
+print cofdat
 
 
-# In[60]:
+# In[253]:
 
 sincofd = dict()
 
 
-# In[61]:
+# In[171]:
 
 import getpass
 
 
-# In[63]:
+# In[172]:
 
 gusr = getpass.getuser()
 
 
-# In[64]:
+# In[173]:
 
 gusr
 
 
-# In[65]:
+# In[174]:
 
 #Outlet is username of sales person
 
 
-# In[67]:
+# In[175]:
 
 #Product is coffee name. 
 #Open and read file that the customer asks
@@ -136,48 +219,93 @@ gusr
 #Staff - Staff list
 
 
-# In[78]:
+# In[176]:
 
 #opctype = open('/home/wcmckee/sellcoffee/usernames/')
 
 
-# In[82]:
+# In[190]:
 
 coftag = ('coffee, soymilk')
 
 
-# In[85]:
+# In[ ]:
+
+idnum = 1000
+
+
+# In[178]:
 
 #Amount of coffee sales
-cofsal = 45
+cofsal = salnumz
 
 
-# In[86]:
+# In[179]:
 
-salstot = 4 * cofsal
+salstot = 4 * salnumz
 
 
-# In[88]:
+# In[180]:
 
 sincofd.update({'Outlet': gusr})
 
-sincofd.update({'Product': 'flatwhite'})
+sincofd.update({'Product': strprod})
 
-sincofd.update({'ID': 1000})
+sincofd.update({'ID': 10001})
 #Tags for this sale. 
 sincofd.update({'tags': coftag})
 #Sales count of that product
-sincofd.update({'count': 45})
+sincofd.update({'count': salnumz})
 sincofd.update({'sales': salstot})
 
 
-# In[89]:
+# In[181]:
 
 sincofd
 
 
-# In[72]:
+# In[182]:
 
 #Need a list of coffee types
 #and assign ID to each coffee.
+
+
+# In[186]:
+
+strprod
+
+
+# In[198]:
+
+savprod = open('/home/wcmckee/sellcoffee/products/' + strprod, 'w')
+
+savprod.write('1')
+
+savprod.close()
+
+
+# In[187]:
+
+#strzict = dict({'test':'again'})
+
+
+# In[188]:
+
+#strzict
+
+
+# In[188]:
+
+dictprod = dict()
+
+
+# In[189]:
+
+#Add internet. Adds computer time to a account.
+dictprod.update({newprod: sincofd})
+
+
+# In[107]:
+
+print dictprod
 
