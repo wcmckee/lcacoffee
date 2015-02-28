@@ -1,13 +1,23 @@
 
 # coding: utf-8
 
-# Sale Rev
+# <h1>Sale Rev</h1>
 # 
-# Sale Reverse. Sell Internet.
+# <h3>Sale Reverse. Sell Stuff.</h3>
 # 
 # Python script for point of sale computer time.
 # 
 # more $ == more time.
+# 
+# Opens up sales data of products and saves for daily reports.
+# 
+# Saving the data as a json object. File has name of product as key and amount sold for value. 
+# 
+# Easily merge json files. 
+# 
+# At the end of each day keep the product in product folder but change sales data to 0.
+# 
+# 
 
 # In[123]:
 
@@ -26,14 +36,19 @@ arut = arrow.utcnow()
 arday = arut
 
 
-# In[125]:
+# In[168]:
+
+
+
+
+# In[165]:
 
 cofdot = dict()
 
 
 # In[126]:
 
-print('a to add time, b to remove time, c to')
+#print('a to add time, b to remove time, c to')
 
 
 # In[127]:
@@ -103,6 +118,54 @@ for lsit in lsitems:
 # In[142]:
 
 print daydict
+
+
+# In[158]:
+
+jsday = json.dumps(daydict)
+
+
+# In[163]:
+
+#The json object.  Should sale it to a folder. Maybe to 
+#/yr/mnth/day folder?
+#All in one folder, name of json file is datetime.
+
+jsday
+
+
+# In[ ]:
+
+
+
+
+# In[169]:
+
+savjsf = open('/home/wcmckee/sellcoffee/archive/' + str(arut.date()) + '.json', 'w')
+
+
+# In[170]:
+
+savjsf.write(jsday)
+
+
+# In[171]:
+
+savjsf.close()
+
+
+# In[172]:
+
+#Reset value of int in products/nameofproducts folder to 0.
+
+
+# In[174]:
+
+for lst in lsitems:
+    print lst
+    opfolaz = open('/home/wcmckee/sellcoffee/products/' + lst, 'w')
+    opfolaz.write('0')
+    opfolaz.close()
 
 
 # In[143]:
