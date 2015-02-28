@@ -1,6 +1,10 @@
 
 # coding: utf-8
 
+# <h1>RevCoffee</h1>
+# 
+# <h3>Reverse Coffee Sales System</h3>
+# 
 # This is a script to create coffee sales data. 
 # It uses the same base template as lcacoffee.ipnb.
 # 
@@ -10,165 +14,195 @@
 # 
 # Cash register base.
 # 
+# Hour, Daily, Monthly, Annual sales data of each item.
+# 
 # 10 cents, 20cents, 50cents, 1dollar, 2dollar,
 # 5 dollar, 10 dollar, 20 dollar, 50 dollar, 100 dollar.
 # 
 # Point of sale open source project.
 
-# In[222]:
+# In[ ]:
 
 
 
 
-# In[223]:
+# In[1]:
 
 import arrow
 import os
 
 
-# In[224]:
+# In[2]:
 
 #I need it to return the day of the week it is.
 #etc. Monday, Tuesday, Wednesday, Thursday
 
 
-# In[225]:
+# In[3]:
 
 arut = arrow.utcnow()
 
 
-# In[226]:
+# In[4]:
 
 cofdat = dict()
 
 
-# In[227]:
+# In[5]:
 
 #cofdat
 
 
-# In[229]:
+# In[6]:
 
 #Add a product.
-newprod = raw_input('Enter new product: ')
+yop = raw_input('add new product? y/n ')
 
-strprod = str(newprod)
-#dicprod = dict()
+if 'y' in yop:
+    newprod = raw_input('Enter new product: ')
+
+    strprod = str(newprod)
+    #dicprod = dict
+else:
+    print 'not adding new product'
 
 
-# In[230]:
+# In[7]:
+
+yepz = raw_input('sell a product? y/n')
+#input product type to sell.
+if 'y' in yepz:
+    lios = os.listdir('/home/wcmckee/sellcoffee/products/')
+    print lios
+    useprod = raw_input('Sell What? ')
+    useprod
+
+
+# In[8]:
 
 #dict({"test": "again"})
 
 
-# In[231]:
+# In[9]:
 
 print arut.date()
 
 
-# In[232]:
+# In[10]:
 
 print arut.time()
 
 
-# In[233]:
+# In[11]:
 
 arut.weekday()
 
 
-# In[234]:
+# In[12]:
 
 cofdat.update({'Day': arut.weekday()})
 
 
-# In[235]:
+# In[13]:
 
 cofdat.update({'Date': str(arut.date())})
 
 
-# In[236]:
+# In[14]:
 
 print cofdat
 
 
-# In[237]:
+# In[15]:
 
 #for dayhr in range(24):
     #print dayhr
 #    cofdat.update({dayhr: ' '})
 
 
-# In[238]:
+# In[16]:
 
 twenforst = arut.strftime('%H')
 
 
-# In[239]:
+# In[17]:
 
 twenforst
 
 
-# In[240]:
+# In[18]:
 
 lisprod = ('/home/wcmckee/sellcoffee/products/')
 
 
-# In[241]:
+# In[52]:
 
 os.listdir(lisprod)
 
 
-# In[242]:
+# In[53]:
+
+#Type in shortcuts for selecting items from list.
+#id is code for what you can input in order to choose a
+#product.
+
+
+# In[20]:
 
 opnumco = open('/home/wcmckee/sellcoffee/products/internet', 'r')
 
 oprz = opnumco.read()
 
 
-# In[243]:
+# In[21]:
 
 #Need to +1 to this number 
 salnumz = int(oprz) + 1
 
 
-# In[244]:
+# In[22]:
 
 salnumz
 
 
-# In[245]:
+# In[23]:
 
 savopnum = open('/home/wcmckee/sellcoffee/products/internet', 'w')
 
 savopnum.write(str(salnumz))
 
 
-# In[246]:
+# In[24]:
 
 savopnum.close()
 
 
-# In[247]:
+# In[25]:
 
 cofdat.update({twenforst: salnumz})
 
 
-# In[248]:
+# In[26]:
 
 #cofdat.update({twenforst : numup
 
 
-# In[249]:
+# In[69]:
 
 cofdat
 
 
-# In[250]:
+# In[70]:
 
 cofdat.update({twenforst: 1})
 
 
-# In[251]:
+# In[ ]:
+
+#Get value [hour of the day] of key [amount sold]
+
+
+# In[29]:
 
 #Whats the point in creating keys for hours that don't
 #get sales. Just get it to update with hour and add it
@@ -177,37 +211,37 @@ cofdat.update({twenforst: 1})
 #Currently just numbers.
 
 
-# In[252]:
+# In[30]:
 
 print cofdat
 
 
-# In[253]:
+# In[31]:
 
 sincofd = dict()
 
 
-# In[171]:
+# In[32]:
 
 import getpass
 
 
-# In[172]:
+# In[33]:
 
 gusr = getpass.getuser()
 
 
-# In[173]:
+# In[34]:
 
 gusr
 
 
-# In[174]:
+# In[35]:
 
 #Outlet is username of sales person
 
 
-# In[175]:
+# In[36]:
 
 #Product is coffee name. 
 #Open and read file that the customer asks
@@ -219,39 +253,67 @@ gusr
 #Staff - Staff list
 
 
-# In[176]:
+# In[37]:
 
 #opctype = open('/home/wcmckee/sellcoffee/usernames/')
 
 
-# In[190]:
+# In[38]:
 
 coftag = ('coffee, soymilk')
 
 
-# In[ ]:
+# In[39]:
 
 idnum = 1000
 
 
-# In[178]:
+# In[40]:
 
 #Amount of coffee sales
 cofsal = salnumz
 
 
-# In[179]:
+# In[41]:
 
 salstot = 4 * salnumz
 
 
-# In[180]:
+# In[ ]:
+
+#New product id will be os.listdir products len 
+#1000 + products len
+#This will increase by 1 each time a new product is added.
+#Product ids start from 1000 or higher?
+
+
+# In[56]:
+
+amofp = len(os.listdir(lisprod))
+
+
+# In[57]:
+
+neidfp = (amofp + 1000)
+
+
+# In[58]:
+
+neidfp
+
+
+# In[59]:
+
+#Dict of new product created with this script. 
+#Dict is stored with folder of product.
+#Details on when product was first created
+#It's name, ID, tags, sales counts.
 
 sincofd.update({'Outlet': gusr})
 
 sincofd.update({'Product': strprod})
 
-sincofd.update({'ID': 10001})
+sincofd.update({'ID': neidfp})
 #Tags for this sale. 
 sincofd.update({'tags': coftag})
 #Sales count of that product
@@ -259,23 +321,23 @@ sincofd.update({'count': salnumz})
 sincofd.update({'sales': salstot})
 
 
-# In[181]:
+# In[60]:
 
 sincofd
 
 
-# In[182]:
+# In[61]:
 
 #Need a list of coffee types
 #and assign ID to each coffee.
 
 
-# In[186]:
+# In[62]:
 
 strprod
 
 
-# In[198]:
+# In[63]:
 
 savprod = open('/home/wcmckee/sellcoffee/products/' + strprod, 'w')
 
@@ -284,28 +346,28 @@ savprod.write('1')
 savprod.close()
 
 
-# In[187]:
+# In[64]:
 
 #strzict = dict({'test':'again'})
 
 
-# In[188]:
+# In[65]:
 
 #strzict
 
 
-# In[188]:
+# In[66]:
 
 dictprod = dict()
 
 
-# In[189]:
+# In[67]:
 
 #Add internet. Adds computer time to a account.
 dictprod.update({newprod: sincofd})
 
 
-# In[107]:
+# In[68]:
 
 print dictprod
 
