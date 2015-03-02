@@ -9,7 +9,7 @@
 # Each product has rsa key - public and private key.
 # 
 
-# In[31]:
+# In[48]:
 
 import os
 #from passlib.hash import pbkdf2_sha256
@@ -17,41 +17,58 @@ import os
 #from Crypto.PublicKey import RSA
 
 
-# In[32]:
+# In[49]:
 
 prodirz = ('/home/wcmckee/sellcoffee/products/')
 
 
-# In[33]:
+# In[50]:
 
 prolis = os.listdir(prodirz)
 
 
-# In[34]:
+# In[51]:
 
 print prolis
 
 
-# In[35]:
+# In[52]:
 
 prodoadd = raw_input('Name of product to add: ')
 
 
-# In[36]:
+# In[53]:
 
 prodirc = (prodirz + prodoadd)
 
 
-# In[37]:
+# In[54]:
 
 os.mkdir(prodirc)
 
 
-# In[42]:
+# In[55]:
 
 opmeta = open(prodirc + '/' +  prodoadd + '-amount', 'w')
 
 opmeta.write('0')
+
+opmeta.close()
+
+
+# In[57]:
+
+#id for each item. Starts at 1000 and up to 9999
+#to make id it gets len of items in products folder and plus
+#1000.
+
+totprods = len(prolis)
+
+newids = totprods + 1000
+
+opmeta = open(prodirc + '/' +  prodoadd + '-id', 'w')
+
+opmeta.write(str(newids))
 
 opmeta.close()
 
