@@ -19,50 +19,65 @@
 # e receipts. 
 # 
 
-# In[109]:
+# In[121]:
 
 import os
 import arrow
 import json
 
 
-# In[110]:
+# In[122]:
 
 prodir = ('/home/wcmckee/sellcoffee/products/')
 
 
-# In[111]:
+# In[123]:
 
 lsprod = os.listdir(prodir)
 
 
-# In[112]:
+# In[124]:
 
 print lsprod
 
 
-# In[80]:
+# In[125]:
 
 sellwhat = raw_input('Sell what: ')
 
 
-# In[81]:
+# In[135]:
+
+fpathz = (prodir + sellwhat + '/' + sellwhat + '-amount')
+
+
+# In[136]:
+
+fpathz
+
+
+# In[137]:
 
 #Open the file up and increase the sale number by one.
 
-selinp = open(prodir + sellwhat, 'r')
+selinp = open(fpathz, 'r')
 
 cursal = selinp.read()
 
 selinp.close()
 
 
-# In[82]:
+# In[139]:
+
+print cursal
+
+
+# In[138]:
 
 conint = int(cursal)
 
 
-# In[83]:
+# In[140]:
 
 #1 is amount to sell. Maybe raw_input enter int to sell more
 #than one
@@ -72,27 +87,27 @@ amount = int(amounsel)
 newintz = conint + amount
 
 
-# In[84]:
+# In[141]:
 
 newintz
 
 
-# In[115]:
+# In[142]:
 
 fildir = (prodir + sellwhat + '/' + sellwhat + '-amount') 
 
 
-# In[116]:
+# In[143]:
 
 fildir
 
 
-# In[ ]:
+# In[143]:
 
 
 
 
-# In[118]:
+# In[144]:
 
 sewha = open(fildir, 'w')
 
@@ -101,19 +116,19 @@ sewha.write(str(newintz))
 sewha.close()
 
 
-# In[86]:
+# In[145]:
 
-opfolaz = open('/home/wcmckee/sellcoffee/products/' + sellwhat, 'r')
+opfolaz = open(fildir, 'r')
 
 print opfolaz.read()
 
 
-# In[87]:
+# In[146]:
 
 opfolaz.close()
 
 
-# In[88]:
+# In[147]:
 
 #Need to report back by updating dict() of 24 hour value
 #that sale is +. 
@@ -124,84 +139,93 @@ opfolaz.close()
 #Change to be given.
 
 
-# In[89]:
+# In[148]:
 
 locdict = dict()
 
 
-# In[90]:
+# In[149]:
 
 autc = arrow.utcnow()
 
 
-# In[91]:
+# In[150]:
 
 hrsaledict = dict()
 
 
-# In[92]:
+# In[151]:
 
 authr = autc.strftime('%H')
 
 
-# In[93]:
+# In[152]:
 
 aumin = autc.strftime('%M')
 
 
-# In[94]:
+# In[153]:
 
 ausec =autc.strftime('%S')
 
 
-# In[95]:
+# In[154]:
 
 str(autc.date())
 
 
-# In[96]:
+# In[155]:
 
 auall = authr + aumin + ausec
 
 
-# In[97]:
+# In[169]:
 
-auall
+fzaq = (str(autc.date()) + '-' + auall)
 
 
-# In[98]:
+# In[170]:
+
+fzaq
+
+
+# In[157]:
 
 hrsaledict.update({auall : amount})
 
 
-# In[99]:
+# In[158]:
 
 locdict.update({'product' : sellwhat, 'amount' : amount, 'time': auall, 'date': str(autc.date())}) 
 
 
-# In[105]:
+# In[159]:
 
 lcojson = json.dumps(locdict)
 
 
-# In[106]:
+# In[160]:
 
 lcojson
 
 
-# In[108]:
+# In[161]:
 
 os.urandom(7)
 
 
 # In[ ]:
 
-
+fzaq
 
 
 # In[ ]:
 
-#salcoj = open('/home/wcmckee/sellcoffee/archive/') 
+salcoj = open('/home/wcmckee/sellcoffee/archive/' + fzaq + '.json', 'w')
+
+salcoj.write(lcojson)
+
+salcoj.close()
 
 
 # In[101]:
