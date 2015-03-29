@@ -29,6 +29,21 @@ homdurz = ('/home/' + getusr + '/sellcoffee')
 homdurz
 
 
+# In[9]:
+
+prodz = (homdurz + '/products')
+
+
+# In[10]:
+
+usrnam = (homdurz + '/usernames')
+
+
+# In[11]:
+
+usrnam
+
+
 # In[ ]:
 
 
@@ -39,7 +54,12 @@ homdurz
 os.mkdir(homdurz)
 
 
+# In[8]:
+
+os.mkdir(prodz)
+
+
 # In[ ]:
 
-
+os.mkdir(usrnam)
 
