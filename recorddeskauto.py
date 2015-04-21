@@ -76,7 +76,7 @@ fulldtiz
 
 # In[47]:
 
-rcordcmd = ('recordmydesktop -i /home/wcmckee/Desktop/' + fulldtiz + ('.ogv --no-sound --encoding-on-the-fly'))
+rcordcmd = ('recordmydesktop -o /home/wcmckee/Desktop/' + fulldtiz + ('.ogv --no-sound --encoding-on-the-fly'))
 
 
 # In[48]:
@@ -114,30 +114,5 @@ recordict
 
 # In[ ]:
 
-os.system()
-
-
-# In[13]:
-
-mytimdat.second
-
-
-# In[15]:
-
-mytimdat.year
-
-
-# In[17]:
-
-mytimdat.month
-
-
-# In[18]:
-
-mytimdat.day
-
-
-# In[ ]:
-
-os.system('')
+os.system(rcordcmd)
 
