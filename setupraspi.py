@@ -176,7 +176,12 @@ for hosa in lowlisf:
 repls
 
 
-# In[412]:
+# In[463]:
+
+os.chdir('/home/wcmckee/colortest/')
+
+
+# In[464]:
 
 res = requests.get(urld['url'], stream=True)
 
@@ -185,7 +190,7 @@ with open(str(colordict['title'].replace(' ', '-')) + '.png', 'wb') as outfil:
     del res
 
 
-# In[413]:
+# In[465]:
 
 lowlisf
 
@@ -202,8 +207,8 @@ colordict
 
 # In[416]:
 
-from IPython.display import Image
-Image(filename= colordict['locurl'])
+#from IPython.display import Image
+#Image(filename= colordict['locurl'])
 
 
 # In[417]:
@@ -257,6 +262,21 @@ for rabse in absens:
         
 
 
+# In[458]:
+
+lownumza = []
+
+
+# In[459]:
+
+for rabse in absens:
+    print rabse
+    if int(rabse) <= 5:
+        #print 'mid
+        print 'low'
+        lownumza.append(rabse)
+
+
 # In[424]:
 
 print absens
@@ -285,30 +305,28 @@ for mit in midtens:
 
 # In[429]:
 
-leabs = len(absenc)
+leabs = len(lownumza)
 leints = len(intens)
 lemid = len(midtens)
 
 
-# In[430]:
-
-print midlis
-print intens
-print midtens
-
-
 # In[439]:
 
-leabs
+#leabs
 colordict.update({'absens-num' : leabs, 'midsens-num' : lemid})
 
 
-# In[440]:
+# In[460]:
+
+leabs
+
+
+# In[461]:
 
 lemid
 
 
-# In[433]:
+# In[462]:
 
 leints
 
@@ -364,6 +382,52 @@ jsnfil
 opjsf = open('/home/wcmckee/colortest/' + colordict['ftitle'] + '.json', 'w')
 opjsf.write(jsnfil)
 opjsf.close()
+
+
+# In[471]:
+
+#prehost = '192.168.1.'
+#lisofip = []
+
+
+# In[ ]:
+
+#These are all the ip addresses i want to dish out.
+#address is in a file and when assigned to a new
+#hostmachine, the address is removed. 
+
+#Lets do it now. 
+
+
+# In[494]:
+
+#opipfza = open('/home/wcmckee/colortest/freeip.txt', 'w')
+#opipfza.write(str(lisofip))
+
+
+# In[ ]:
+
+
+
+
+# In[495]:
+
+#for lispo in lisofip:
+#    print lispo
+#    opipfza.write(str(lispo))
+#    opipfza.write('\n')
+
+
+# In[496]:
+
+#opipfza.close()
+
+
+# In[497]:
+
+#for hosips in range(130,180):
+#    print prehost + str(hosips)
+#    lisofip.append(prehost + str(hosips))
 
 
 # In[ ]:
