@@ -1,6 +1,10 @@
 
 # coding: utf-8
 
+# Record Desktop Auto
+# 
+# Automatic start recording monitor when gimp opens and stop recording on gimp exit. Every hour make a new file. Pause record if mouse doesnt move for x time. 
+
 # In[ ]:
 
 
@@ -71,7 +75,7 @@ timdatez
 
 # In[44]:
 
-fulldtiz = str(timtest) + str(timdatez)
+fulldtiz = str(timdatez) + str(timtest)
 
 
 # In[46]:
@@ -81,7 +85,7 @@ fulldtiz
 
 # In[47]:
 
-rcordcmd = ('recordmydesktop -o /home/wcmckee/Desktop/' + fulldtiz + ('.ogv --no-sound --on-the-fly-encoding'))
+rcordcmd = ('recordmydesktop -o /home/pi/Desktop/' + fulldtiz + ('.ogv --no-sound --on-the-fly-encoding'))
 
 
 # In[48]:
@@ -97,7 +101,7 @@ rcordcmd
 
 # In[51]:
 
-opmeta = open('/home/wcmckee/Desktop/' + fulldtiz + '.json', 'w')
+opmeta = open('/home/pi/Desktop/' + fulldtiz + '.json', 'w')
 
 
 # In[60]:
@@ -107,7 +111,7 @@ recordict = dict()
 
 # In[61]:
 
-recordict.update({'videofile': '/home/wcmckee/Desktop/' + fulldtiz + '.ogv'})
+recordict.update({'videofile': '/home/pi/Desktop/' + fulldtiz + '.ogv'})
 
 
 # In[62]:
