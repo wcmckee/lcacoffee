@@ -1,18 +1,28 @@
 
 # coding: utf-8
 
+# gifey
+# 
+# Downloads gifs based on a keyword from gifphy to a folder and serve them via a web server. 
+# 
+# Find keywords from where?
+# 
+# Creative Commons Keywords - add the gif back into the posts
+
 # In[1]:
 
 import os
 
 
-# In[2]:
+# In[23]:
 
 import requests
 import json
 import shutil
 import dominate
 from time import gmtime, strftime
+
+from walkdir import filtered_walk, dir_paths, all_paths, file_paths
 
 
 # In[3]:
@@ -37,7 +47,7 @@ gifdi = os.listdir('/home/wcmckee/Downloads/gify/')
 
 # In[6]:
 
-opwritj = requests.get('http://api.giphy.com/v1/gifs/search?q=' + keyword + '&api_key=dc6zaTOxFJmzC')
+keywddir = ('/home/wcmckee/Downloads/gify/' + keyword)
 
 
 # In[ ]:
@@ -47,31 +57,50 @@ opwritj = requests.get('http://api.giphy.com/v1/gifs/search?q=' + keyword + '&ap
 
 # In[7]:
 
-wrijrd = opwritj.text
+if os.path.isdir(keywddir) == True:
+    print ('its true')
+else:
+    print ('its false')
+    os.mkdir(keywddir)
 
 
 # In[8]:
 
-jswri = json.loads(wrijrd)
+opwritj = requests.get('http://api.giphy.com/v1/gifs/search?q=' + keyword + '&api_key=dc6zaTOxFJmzC')
+
+
+# In[ ]:
+
+
 
 
 # In[9]:
 
-jswln = len(jswri['data'])
+wrijrd = opwritj.text
 
 
 # In[10]:
 
-jswln
+jswri = json.loads(wrijrd)
 
 
 # In[11]:
+
+jswln = len(jswri['data'])
+
+
+# In[12]:
+
+jswln
+
+
+# In[13]:
 
 for jsw in range(0, jswln):
     if '.gif' in jswri['data'][jsw]['images']['downsized']['url']:
         print(jswri['data'][jsw]['images']['downsized']['url'])
         response = requests.get((jswri['data'][jsw]['images']['downsized']['url']), stream=True)
-        with open('/home/wcmckee/Downloads/gify/'+ str(jsw) + '.gif', 'wb') as out_file:
+        with open(keywddir + '/' + str(jsw) + '.gif', 'wb') as out_file:
             shutil.copyfileobj(response.raw, out_file)
             del response
 
@@ -86,12 +115,12 @@ for jsw in range(0, jswln):
 
 
 
-# In[12]:
+# In[14]:
 
 gifdi = os.listdir('/home/wcmckee/Downloads/gify/')
 
 
-# In[13]:
+# In[15]:
 
 gifdi
 
@@ -106,7 +135,7 @@ gifdi
 
 
 
-# In[14]:
+# In[16]:
 
 doc = dominate.document(title='gify')
 
@@ -155,22 +184,22 @@ with doc:
 #print doc
 
 
-# In[15]:
+# In[17]:
 
 print(doc)
 
 
-# In[16]:
+# In[18]:
 
 savht = open('/home/wcmckee/Downloads/gify/index.html', 'w')
 
 
-# In[17]:
+# In[19]:
 
 savht.write(str(doc))
 
 
-# In[18]:
+# In[20]:
 
 savht.close()
 
