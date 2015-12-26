@@ -7,14 +7,20 @@
 # 
 # Find keywords from where?
 # 
-# Creative Commons Keywords - add the gif back into the posts
+# Creative Commons Keywords - add the gif back into the posts.
+# 
+# Intergrate Nikola. Start saving the gif files in galleries folder. Why doesn't galleries folder render gif files? 
+# 
+# Create nikola post that has the title (keyword) and post contents is the gif url (galleries - keyword)
+# 
+# 
 
 # In[1]:
 
 import os
 
 
-# In[23]:
+# In[6]:
 
 import requests
 import json
@@ -22,7 +28,19 @@ import shutil
 import dominate
 from time import gmtime, strftime
 
+import getpass
+
 from walkdir import filtered_walk, dir_paths, all_paths, file_paths
+
+
+# In[7]:
+
+getusr = getpass.getuser()
+
+
+# In[8]:
+
+getusr
 
 
 # In[3]:
@@ -35,27 +53,22 @@ keyword = input('Keyword: ')
 from dominate.tags import *
 
 
-# In[5]:
+# In[11]:
 
-gifdi = os.listdir('/home/wcmckee/Downloads/gify/')
-
-
-# In[ ]:
+gifdi = os.listdir('/home/' + getusr + '/gify/')
 
 
+# In[12]:
+
+gifdi
 
 
-# In[6]:
+# In[13]:
 
-keywddir = ('/home/wcmckee/Downloads/gify/' + keyword)
-
-
-# In[ ]:
+keywddir = ('/home/' + getusr + '/gify/' + keyword)
 
 
-
-
-# In[7]:
+# In[14]:
 
 if os.path.isdir(keywddir) == True:
     print ('its true')
@@ -64,37 +77,32 @@ else:
     os.mkdir(keywddir)
 
 
-# In[8]:
+# In[15]:
 
 opwritj = requests.get('http://api.giphy.com/v1/gifs/search?q=' + keyword + '&api_key=dc6zaTOxFJmzC')
 
 
-# In[ ]:
-
-
-
-
-# In[9]:
+# In[16]:
 
 wrijrd = opwritj.text
 
 
-# In[10]:
+# In[17]:
 
 jswri = json.loads(wrijrd)
 
 
-# In[11]:
+# In[18]:
 
 jswln = len(jswri['data'])
 
 
-# In[12]:
+# In[19]:
 
 jswln
 
 
-# In[13]:
+# In[20]:
 
 for jsw in range(0, jswln):
     if '.gif' in jswri['data'][jsw]['images']['downsized']['url']:
@@ -105,37 +113,42 @@ for jsw in range(0, jswln):
             del response
 
 
-# In[ ]:
+# In[23]:
+
+gifdi = os.listdir('/home/' + getusr + '/gify/')
 
 
-
-
-# In[ ]:
-
-
-
-
-# In[14]:
-
-gifdi = os.listdir('/home/wcmckee/Downloads/gify/')
-
-
-# In[15]:
+# In[24]:
 
 gifdi
 
 
-# In[ ]:
+# In[25]:
+
+keyword
 
 
+# In[27]:
+
+posfild = ('/home/' + getusr + '/gify/site/posts/')
 
 
-# In[ ]:
+# In[28]:
+
+posfild
 
 
+# In[29]:
+
+#galdir = ('galleries/' + keyword + '/' +)
 
 
-# In[16]:
+# In[44]:
+
+keyosli = os.listdir(keywddir)
+
+
+# In[49]:
 
 doc = dominate.document(title='gify')
 
@@ -146,7 +159,7 @@ with doc.head:
     
     with div():
         attr(cls='header')
-        h1('Gify')
+        h1('Gify ' + keyword)
         p(img('imgs/logo.svg', src='imgs/logo.svg'))
         #p(img('imgs/15/01/02/ReptileLover82-reference.png', src= 'imgs/15/01/02/ReptileLover82-reference.png'))
         h1('Updated ', strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
@@ -156,11 +169,12 @@ with doc.head:
 
 with doc:
     with div(id='body').add(ol()):
-        for rdz in gifdi:
+        for rdz in keyosli:
             #h1(rdz.title)
             #a(rdz.url)
             #p(img(rdz, src='%s' % rdz))
             #print rdz
+            
             p(img(rdz, src = rdz))
             p(rdz)
 
@@ -177,44 +191,24 @@ with doc:
 
     with div():
         attr(cls='body')
-        p('GetsDrawn is open source')
+        p('Gify is open source')
         a('https://github.com/getsdrawn/getsdrawndotcom')
         a('https://reddit.com/r/redditgetsdrawn')
 
 #print doc
 
 
-# In[17]:
+# In[53]:
 
-print(doc)
-
-
-# In[18]:
-
-savht = open('/home/wcmckee/Downloads/gify/index.html', 'w')
+savht = open('/home/' + getusr +'/gify/' + keyword + '/index.html' , 'w')
 
 
-# In[19]:
+# In[54]:
 
 savht.write(str(doc))
 
 
-# In[20]:
+# In[55]:
 
 savht.close()
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
 
